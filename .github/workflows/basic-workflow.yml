@@ -1,0 +1,27 @@
+name: Run Calculator Java Program
+run-name: Running Calculator.java on push
+
+on:
+  push:
+    paths:
+      - '**.java'
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'  # or 11/21 depending on your Java version
+
+      - name: Compile Calculator.java
+        run: javac Calculator.java
+
+      - name: Run Calculator.java
+        run: java Calculator
